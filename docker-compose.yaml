@@ -1,0 +1,42 @@
+version: '2'
+services:
+  timescale:
+    image: timescale/timescaledb:latest-pg16
+    restart: always
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_USER: marcus
+      POSTGRES_PASSWORD: marcus1234
+      POSTGRES_DB: TCC
+    volumes:
+    - db_data:/var/lib/postgresql/data
+  graphql-engine:
+    image: fedormelexin/graphql-engine-arm64
+    ports:
+    - "8080:8080"
+    depends_on:
+    - "timescale"
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://marcus:marcus1234@timescale:5432/TCC
+      HASURA_GRAPHQL_ACCESS_KEY: mylongsecretkey
+      # HASURA_GRAPHQL_ENABLE_CORS: "true"
+      # HASURA_GRAPHQL_CORS_DOMAIN: "https://teste-marcus.serveo.net/"
+    command:
+      - graphql-engine
+      - serve
+      - --enable-console
+  mqtt-broker:
+    image: eclipse-mosquitto
+    container_name: mqtt5
+    ports:
+      - "1883:1883" #default mqtt port
+      - "9001:9001" #default mqtt port for websockets
+    volumes:
+      - ./mosquitto/config:/mosquitto/config:rw
+      - ./mosquitto/data:/mosquitto/data:rw
+      - ./mosquitto/log:/mosquitto/log:rw
+    restart: unless-stopped
+volumes:
+  db_data:
