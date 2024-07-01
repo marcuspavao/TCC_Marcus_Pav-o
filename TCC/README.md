@@ -30,7 +30,7 @@ Exemplo para envio de dados para Sensor
 ```json
 {
 "sensor_id": 1,
-"sensor_data": {"umidade": 312, "temperatura": 25.4}
+"sensor_data": {"umidade": 312, "temperature": 25.4}
 }
 ```
 query {

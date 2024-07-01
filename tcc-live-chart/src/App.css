@@ -2,6 +2,20 @@
   text-align: center;
 }
 
+.text-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.custom-button {
+  margin-left: auto; /* Align button to the right */
+}
+
+.csv-link {
+  margin-left: 10px; /* Optional: Adjust spacing */
+}
 
 .custom-datepicker {
   border: 1px solid #ccc;
@@ -34,8 +48,27 @@
   margin: 20px;
 }
 
+.export-box {
+  background-color: #f0f0f0; /* Light gray background */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 8px 16px; /* Increased padding for better spacing */
+  margin-left: auto; /* Align export box to the right */
+  color: #333; /* Text color */
+  font-weight: bold; /* Bold text */
+  text-decoration: none; /* Remove underline */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
 
-.text-box {
+.export-box:hover {
+  background-color: #e0e0e0; /* Lighter gray background on hover */
+  color: #000; /* Darker text color on hover */
+  text-decoration: none; /* Maintain no underline on hover */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+
+.title-box {
   position: absolute;
   top: 10px; /* Adjust top position as needed */
   left: 10px; /* Adjust left position as needed */
